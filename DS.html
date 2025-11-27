@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Design System Preview</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- GOOGLE FONTS -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Inter:wght@300;400;600;700&family=Roboto+Mono:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="CSS/styleForm.css">
+<style>
+
+/* ============================= */
+/*         DESIGN SYSTEM         */
+/* ============================= */
+
+/* ========== TOKENS ========== */
+/* ---------------------- */
+/* LOADING ANIMATION      */
+/* ---------------------- */
+
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  margin: 20px;
+  position: absolute;
+  margin: auto;
+  left: 44%;
+  bottom: 25px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  border: 8px solid white;
+  animation:
+    l20-1 0.8s infinite linear alternate,
+    l20-2 1.6s infinite linear;
+}
+
+@keyframes l20-1 {
+  0%    {clip-path: polygon(50% 50%,0 0,50% 0,50% 0,50% 0,50% 0,50% 0)}
+  12.5% {clip-path: polygon(50% 50%,0 0,50% 0,100% 0,100% 0,100% 0,100% 0)}
+  25%   {clip-path: polygon(50% 50%,0 0,50% 0,100% 0,100% 100%,100% 100%,100% 100%)}
+  50%   {clip-path: polygon(50% 50%,0 0,50% 0,100% 0,100% 100%,50% 100%,0 100%)}
+  62.5% {clip-path: polygon(50% 50%,100% 0,100% 0,100% 0,100% 100%,50% 100%,0 100%)}
+  75%   {clip-path: polygon(50% 50%,100% 100%,100% 100%,100% 100%,100% 100%,50% 100%,0 100%)}
+  100%  {clip-path: polygon(50% 50%,50% 100%,50% 100%,50% 100%,50% 100%,50% 100%,0 100%)}
+}
+
+@keyframes l20-2 {
+  0% {transform: scaleY(1) rotate(0deg)}
+  49.99%{transform: scaleY(1) rotate(135deg)}
+  50% {transform: scaleY(-1) rotate(0deg)}
+  100%{transform: scaleY(-1) rotate(-135deg)}
+}
+
+
+
+
+:root {
+  /* Colors */
+  --color-primary-dark-blue: #27445B;
+  --color-primary-green: #0E6B4B;
+  --color-primary-light-blue: #66AAFF;
+  --color-primary-aqua: #3788A6;
+  --color-primary-whatsapp: #25D366;
+
+  --color-danger-red: #E51A29;
+  --color-danger-dark-red: #8E2927;
+  --color-danger-hover-red: #6A2E30;
+
+  --color-white: #ffffff;
+  --color-gray-light: #e0e0e0;
+  --color-gray-mid: #cccccc;
+  --color-gray-dark: #4a4a4a;
+  --color-tooltip-bg: #1c1c1c;
+
+  /* Typography */
+  --font-sans: "Montserrat", sans-serif;
+  --font-inter: "Inter", sans-serif;
+  --font-mono: "Roboto Mono", monospace;
+
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 20px;
+  --font-size-xl: 32px;
+
+  /* Radius */
+  --radius-sm: 4px;
+  --radius-md: 5px;
+  --radius-lg: 10px;
+  --radius-full: 999px;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 10px;
+  --space-4: 15px;
+  --space-5: 20px;
+  --space-6: 30px;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.3);
+  --shadow-md: 0 4px 8px rgba(0,0,0,0.2);
+  --shadow-lg: 0 4px 15px rgba(0,0,0,0.4);
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+}
+
+/* ========== UTILITÁRIOS ========== */
+.shadow-sm { box-shadow: var(--shadow-sm); }
+.shadow-md { box-shadow: var(--shadow-md); }
+.shadow-lg { box-shadow: var(--shadow-lg); }
+
+.rounded-sm { border-radius: var(--radius-sm); }
+.rounded-md { border-radius: var(--radius-md); }
+.rounded-lg { border-radius: var(--radius-lg); }
+.rounded-full { border-radius: var(--radius-full); }
+
+.mt-2 { margin-top: var(--space-2); }
+.mt-3 { margin-top: var(--space-3); }
+.mt-4 { margin-top: var(--space-4); }
+.mt-5 { margin-top: var(--space-5); }
+
+.p-3 { padding: var(--space-3); }
+.p-4 { padding: var(--space-4); }
+
+/* ========== TIPOGRAFIA ========== */
+.text-title { font-family: var(--font-sans); font-size: var(--font-size-xl); font-weight: 700; }
+.text-subtitle { font-family: var(--font-sans); font-size: var(--font-size-lg); font-weight: 300; }
+.text-body { font-family: var(--font-sans); font-size: var(--font-size-md); }
+.text-small { font-size: var(--font-size-sm); }
+.text-error { font-family: var(--font-mono); font-size: var(--font-size-xs); color: var(--color-danger-red); }
+
+/* ========== BOTÕES ========== */
+.btn {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-md);
+  font-weight: 600;
+
+  padding: var(--space-3) var(--space-5);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-normal);
+}
+
+.btn:hover {
+  transform: scale(1.03);
+  filter: brightness(1.1);
+}
+
+.btn-primary { background-color: var(--color-primary-dark-blue); color: var(--color-white); }
+.btn-green { background-color: var(--color-primary-green); color: var(--color-white); }
+.btn-aqua { background-color: var(--color-primary-aqua); color: var(--color-white); }
+.btn-whatsapp { background-color: var(--color-primary-whatsapp); color: var(--color-white); }
+.btn-danger { background-color: var(--color-danger-red); color: var(--color-white); }
+.btn-email { background-color: var(--color-danger-dark-red); color: var(--color-white); }
+
+/* ========== INPUTS NORMAIS ========== */
+.input {
+  width: 100%;
+  height: 45px;
+  padding: 0 var(--space-4);
+  background: var(--color-gray-light);
+  border-radius: var(--radius-sm);
+  color: var(--color-gray-dark);
+  border: none;
+  outline: none;
+  font-size: var(--font-size-md);
+  transition: var(--transition-fast);
+}
+
+.input:focus {
+  background: var(--color-white);
+  box-shadow: 0 0 5px 2px rgba(102, 170, 255, 0.2);
+}
+
+/* ========== INPUT FLOATING LABEL ========== */
+.input-group {
+  position: relative;
+  margin: 20px 0;
+  width: 100%;
+}
+
+.input-group label {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  font-size: 16px;
+  font-family: var(--font-sans);
+  color: var(--color-gray-dark);
+  pointer-events: none;
+  transition: 0.3s ease;
+  background: transparent;
+  padding: 0 4px;
+}
+
+.input-group input {
+  width: 100%;
+  height: 45px;
+  padding: 0 15px;
+  border-radius: var(--radius-sm);
+  border: none;
+  background: var(--color-gray-light);
+  outline: none;
+  font-size: 16px;
+  font-family: var(--font-sans);
+}
+
+.input-group input:focus {
+  background: var(--color-white);
+  box-shadow: 0 0 5px 2px rgba(102, 170, 255, 0.2);
+}
+
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
+  top: -8px;
+  font-size: 12px;
+  background: var(--color-gray-light);
+  border-radius: 4px;
+  color: var(--color-primary-dark-blue);
+}
+
+/* ========== CODE INPUT ========== */
+.code-input {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.code-input input {
+  width: 50px;
+  height: 60px;
+  text-align: center;
+  font-size: 24px;
+  border: 2px solid var(--color-primary-dark-blue);
+  border-radius: 10px;
+  color: var(--color-primary-dark-blue);
+  background: white;
+  outline: none;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition-fast);
+}
+
+.code-input input:focus {
+  border-color: var(--color-primary-light-blue);
+  box-shadow: 0 0 0 2px rgba(102,170,255,0.2);
+}
+
+/* ========== TOOLTIP ========== */
+.tooltip {
+  display: none;
+  position: absolute;
+  top: -10px;
+  left: 110%;
+  width: 200px;
+  background: var(--color-tooltip-bg);
+  color: #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 13px;
+  box-shadow: var(--shadow-md);
+}
+
+.tooltip.visible { display: block; }
+
+.tooltip p { margin: 5px 0; }
+.tooltip .valid { color: #4caf50; }
+.tooltip .invalid { color: #f44336; }
+
+/* ========== CHECKBOX CUSTOMIZADO ========== */
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-primary-dark-blue);
+  margin: 15px 0;
+}
+
+.checkbox-group input { display: none; }
+
+.checkbox-group label {
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+}
+
+.checkbox-group label::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-primary-dark-blue);
+  background: white;
+  border-radius: 4px;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.checkbox-group input:checked + label::before {
+  background: var(--color-primary-green);
+  border-color: var(--color-primary-green);
+}
+
+.checkbox-group input:checked + label::after {
+  content: "✔";
+  position: absolute;
+  left: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+  font-size: 14px;
+}
+
+/* ========== CARD ========== */
+.card {
+  background: var(--color-primary-dark-blue);
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  color: white;
+  text-align: center;
+  max-width: 450px;
+  margin: 30px auto;
+  box-shadow: var(--shadow-lg);
+}
+
+/* Ícones simulados */
+.icon-box {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary-light-blue);
+  margin: 0 auto 20px;
+}
+
+</style>
+</head>
+<body style="font-family: var(--font-sans); padding:30px; background:#f5f5f5;">
+
+<h1 class="text-title">Design System – Preview Completo</h1>
+<p class="text-subtitle">Todos os componentes demonstrados</p>
+
+<hr class="mt-4">
+
+<!-- ========================= -->
+<!-- PALETA DE CORES          -->
+<!-- ========================= -->
+<h2 class="text-subtitle mt-5">🎨 Paleta de Cores</h2>
+
+<div style="display:flex; flex-wrap:wrap; gap:20px;">
+  <div style="width:120px; height:80px; background:#27445B;"></div>
+  <div style="width:120px; height:80px; background:#0E6B4B;"></div>
+  <div style="width:120px; height:80px; background:#E51A29;"></div>
+  <div style="width:120px; height:80px; background:#3788A6;"></div>
+  <div style="width:120px; height:80px; background:#25D366;"></div>
+</div>
+
+<hr class="mt-5">
+
+<!-- ========================= -->
+<!-- COMPONENTES               -->
+<!-- ========================= -->
+
+<h2 class="text-subtitle mt-4">🧩 Botões</h2>
+
+<div style="display:flex; flex-wrap:wrap; gap:15px;">
+  <button class="btn btn-primary">Primary</button>
+  <button class="btn btn-green">Green</button>
+  <button class="btn btn-aqua">Aqua</button>
+  <button class="btn btn-whatsapp">WhatsApp</button>
+  <button class="btn btn-danger">Danger</button>
+  <button class="btn btn-email">Email</button>
+</div>
+
+<hr class="mt-5">
+
+<h2 class="text-subtitle mt-4">⌨ Inputs</h2>
+
+<input class="input" placeholder="Input padrão">
+
+<div class="input-group">
+  <input type="text" placeholder=" " id="f1">
+  <label for="f1">Floating Label</label>
+</div>
+
+<hr class="mt-5">
+
+<h2 class="text-subtitle mt-4">🔢 Code Input</h2>
+
+<div class="code-input">
+  <input maxlength="1">
+  <input maxlength="1">
+  <input maxlength="1">
+  <input maxlength="1">
+</div>
+
+<hr class="mt-5">
+
+<h2 class="text-subtitle mt-4">💬 Tooltip</h2>
+
+<div style="position:relative; display:inline-block;">
+  <button class="btn btn-primary" onclick="toggleTooltip()">Mostrar tooltip</button>
+  <div class="tooltip" id="tooltip-demo">
+    <p class="valid">✔ Tudo certo!</p>
+    <p class="invalid">✘ Algo deu errado</p>
+  </div>
+</div>
+
+<script>
+function toggleTooltip() {
+  document.getElementById('tooltip-demo').classList.toggle('visible');
+}
+</script>
+
+<hr class="mt-5">
+
+<h2 class="text-subtitle mt-4">☑ Checkbox Customizado</h2>
+
+<div class="checkbox-group">
+  <input type="checkbox" id="chk1">
+  <label for="chk1">Aceito os termos</label>
+</div>
+
+<hr class="mt-5">
+
+<h2 class="text-subtitle mt-4">📦 Card</h2>
+
+<div class="card">
+  <div class="icon-box"></div>
+  <h3 class="text-title" style="font-size:24px;">Título do Card</h3>
+  <p class="text-body">Este é um componente card estilizado que utilizamos na interface, como um painel de fundo.</p>
+  <button class="btn btn-green" style="margin-top:20px;">Botão do Card</button>
+</div>
+
+<hr class="mt-5">
+<a href="DS.html"> <img src="IMG/image.png" alt="Logo da empresa" class="logo-fixa"> </a>
+<p class="text-body">Logo do patrocinador no canto superior direito da tela</p>
+<hr class="mt-5">
+</body>
+</html>
